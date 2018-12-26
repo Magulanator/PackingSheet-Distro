@@ -1,0 +1,52 @@
+#right_column {
+    margin-top: 10px;
+}
+
+.postflight_details {
+    font-size: 19px;
+}
+
+.postflight_attr {
+    font-size: 16px;
+}
+
+#right_column>div:nth-child(2)>div>table {
+    margin-bottom: 0px;
+}
+
+.table>tbody>tr>td {
+    padding: 5px;
+}
+
+#fileNumber {
+    width: 60px;
+}
+
+.class_postflight_dropzone {
+    border: 2px dashed rgba(109, 195, 243,.8);
+
+}
+.class_postflight_dropzone_drag {
+    border: 2px solid rgba(109, 195, 243, .4);
+}
+
+.class_postflight_dz_background {
+    background-color: rgb(109, 195, 243);
+}
+.class_postflight_dz_background_drag {
+    background-color: rgba(109, 195, 243, 0.40);
+}
+#main > div > div.col-lg-5 > div.ibox.float-e-margins, #right_column > div:nth-child(1),#right_column > div:nth-child(2)  {
+    margin-bottom: 10px;
+}
+
+#submit_postflight {
+    padding-top: 17px;
+    padding-bottom: 17px;
+    width: 195px;
+}
+#cancel_postflight {
+    padding-top: 17px;
+    padding-bottom: 17px;
+    width: 195px;
+}

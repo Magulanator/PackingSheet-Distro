@@ -1,581 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- What I'm doing with creating new images is that I'm taking them out of the system and putting them back in again
+  <!--
+    What I'm doing with creating new images is that I'm taking them out of the system and putting them back in again
 
     time to go to bed
--->
+  -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Packout</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.6.1/js/all.js" integrity="sha384-R5JkiUweZpJjELPWqttAYmYM1P3SNEJRM6ecTQF05pFFtxmCO+Y1CiUhvuDzgSVZ" crossorigin="anonymous"></script>
     <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700);
-        @media print {
-            .input-section {
-                display: none;
-            }
-            * {
-                -webkit-print-color-adjust: exact;
-            }
-            html {
-                font-family: "Titillium Web", sans-serif;
-                font-size: 52.5%;
-            }
-            body,
-            p,
-            span,
-            ul,
-            ol {
-                font-size: 1rem;
-            }
-            h1 {
-                font-size: 2.4rem;
-            }
-            body {
-                margin: 0px;
-                padding: 0px;
-            }
-            .page-container {
-                height: 8.5in;
-                width: 11in;
-                margin: 0px;
-                padding: 0px;
-                page-break-after: always;
-            }
-            header {
-                width: 100%;
-                height: 7rem;
-                background: rgba(0, 0, 0, 0.103);
-                border-bottom: 1px solid white;
-                border-radius: 5px;
-            }
-            footer {
-                width: 100%;
-                height: 14rem;
-                background: rgba(0, 0, 0, 0.103);
-                border-bottom: 1px solid white;
-                border-radius: 5px;
-                padding-left: 20px;
-                padding-top: 5px;
-                position: relative;
-                bottom: 0
-            }
-            .ship__location {
-                font-size: 1.5em;
-            }
-            .job__num {
-                margin-left: 84%;
-                font-size: 1.5em;
-                display: inline;
-                width: 300%;
-            }
-            footer .product__notes {
-                padding-top: 1px;
-                padding-bottom: 1px;
-                margin-top: 0px;
-                margin-bottom: 0px;
-                font-size: 1.5em;
-            }
-            page {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-            }
-            product {
-                border: 0.15rem solid #ddd;
-                padding: 2rem;
-                padding-bottom: 1rem;
-                padding-top: 1rem;
-                margin: 1rem;
-                border-radius: 5px;
-                width: calc((100% - 8rem) / 4);
-                box-sizing: border-box;
-            }
-            product .product__code {
-                font-weight: 800;
-            }
-            product .product__name {
-                margin-bottom: 1rem;
-                margin-left: 2rem;
-            }
-            product .product__image {
-                height: 15rem;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                margin-bottom: 3rem;
-            }
-            product .product__notes {
-                font-size: .7em;
-            }
-            product .product__image img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-        }
-        
-        @media screen {
-            html {
-                font-family: "Titillium Web", sans-serif;
-                font-size: 62.5%;
-            }
-            body,
-            p,
-            span,
-            ul,
-            ol {
-                font-size: 1.6rem;
-            }
-            h1 {
-                font-size: 2.4rem;
-            }
-            body {
-                margin: 1rem;
-            }
-            .page-container {
-                page-break-after: always;
-            }
-            header {
-                width: 100%;
-                height: 3rem;
-                background: rgba(0, 0, 0, 0.103);
-                ;
-                border-bottom: 1px solid white;
-                border-radius: 5px;
-            }
-            footer {
-                width: 100%;
-                height: 6rem;
-                background: rgba(0, 0, 0, 0.103);
-                border-bottom: 1px solid white;
-                border-radius: 5px;
-            }
-            page {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-            }
-            product {
-                border: 0.15rem solid #ddd;
-                padding: 2rem;
-                margin: 1rem;
-                border-radius: 5px;
-                width: calc((100% - 8rem) / 4);
-                box-sizing: border-box;
-            }
-            product .product__code {
-                font-weight: 800;
-            }
-            product .product__name {
-                margin-bottom: 1rem;
-                margin-left: 2rem;
-            }
-            product .product__notes {
-                font-size: .8em;
-            }
-            product .product__image {
-                height: 15rem;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                margin-bottom: 3rem;
-            }
-            product .product__image img {
-                width: auto;
-                height: 100%;
-            }
-        }
-        
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
-        input[type='checkbox'] {
-            display: none;
-        }
-        
-        .check-container {
-            font-weight: 600;
-            display: inline-block;
-            position: relative;
-            width: 200px;
-            height: 27px;
-            color: #111;
-            display: block;
-        }
-        
-        input[type='checkbox']+label {
-            z-index: 15;
-            position: absolute;
-            left: 0px;
-            margin-top: 1px;
-            margin-left: 10px;
-            font-size: 3em;
-            width: 10px;
-            border: 3px solid rgba(37, 35, 35, 0);
-            height: 10px;
-        }
-        
-        .tag {
-            margin-left: 40px;
-        }
-    </style>
-</head>
+      @import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700);
 
-<body>
+      @media print {
+        .input-section {
+          display: none;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact;
+        }
+
+        html {
+          font-family: "Titillium Web", sans-serif;
+          font-size: 52.5%;
+        }
+
+        body,
+        p,
+        span,
+        ul,
+        ol {
+          font-size: 1rem;
+        }
+
+        h1 {
+          font-size: 2.4rem;
+        }
+
+        body {
+          margin: 0px;
+          padding: 0px;
+        }
+
+        .page-container {
+          height: 8.5in;
+          width: 11in;
+          margin: 0px;
+          padding: 0px;
+          page-break-after: always;
+        }
+
+        header {
+          width: 100%;
+          height: 7rem;
+          background: rgba(0, 0, 0, 0.103);
+          border-bottom: 1px solid white;
+          border-radius: 5px;
+        }
+
+        footer {
+          width: 100%;
+          height: 14rem;
+          background: rgba(0, 0, 0, 0.103);
+          border-bottom: 1px solid white;
+          border-radius: 5px;
+          padding-left: 20px;
+          padding-top: 5px;
+          position: relative;
+          bottom: 0;
+        }
+
+        .ship__location {
+          font-size: 1.5em;
+        }
+
+        .job__num {
+          margin-left: 84%;
+          font-size: 1.5em;
+          display: inline;
+          width: 300%;
+        }
+
+        footer .product__notes {
+          padding-top: 1px;
+          padding-bottom: 1px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          font-size: 1.5em;
+        }
+
+        page {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+
+        product {
+          border: 0.15rem solid #ddd;
+          padding: 2rem;
+          padding-bottom: 1rem;
+          padding-top: 1rem;
+          margin: 1rem;
+          border-radius: 5px;
+          width: calc((100% - 8rem) / 4);
+          box-sizing: border-box;
+        }
+
+        product .product__code {
+          font-weight: 800;
+        }
+
+        product .product__name {
+          margin-bottom: 1rem;
+          margin-left: 2rem;
+        }
+
+        product .product__image {
+          height: 15rem;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          margin-bottom: 3rem;
+        }
+
+        product .product__notes {
+          font-size: 0.7em;
+        }
+
+        product .product__image img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      @media screen {
+        html {
+          font-family: "Titillium Web", sans-serif;
+          font-size: 62.5%;
+        }
+
+        body,
+        p,
+        span,
+        ul,
+        ol {
+          font-size: 1.6rem;
+        }
+
+        h1 {
+          font-size: 2.4rem;
+        }
+
+        body {
+          margin: 1rem;
+        }
+
+        .page-container {
+          page-break-after: always;
+        }
+
+        header {
+          width: 100%;
+          height: 3rem;
+          background: rgba(0, 0, 0, 0.103);
+          border-bottom: 1px solid white;
+          border-radius: 5px;
+        }
+
+        footer {
+          width: 100%;
+          height: 6rem;
+          background: rgba(0, 0, 0, 0.103);
+          border-bottom: 1px solid white;
+          border-radius: 5px;
+        }
+
+        page {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+
+        product {
+          border: 0.15rem solid #ddd;
+          padding: 2rem;
+          margin: 1rem;
+          border-radius: 5px;
+          width: calc((100% - 8rem) / 4);
+          box-sizing: border-box;
+        }
+
+        product .product__code {
+          font-weight: 800;
+        }
+
+        product .product__name {
+          margin-bottom: 1rem;
+          margin-left: 2rem;
+        }
+
+        product .product__notes {
+          font-size: 0.8em;
+        }
+
+        product .product__image {
+          height: 15rem;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          margin-bottom: 3rem;
+        }
+
+        product .product__image img {
+          width: auto;
+          height: 100%;
+        }
+      }
+
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .check-container {
+        font-weight: 600;
+        display: inline-block;
+        position: relative;
+        width: 200px;
+        height: 27px;
+        color: #111;
+        display: block;
+      }
+
+      input[type="checkbox"] + label {
+        z-index: 15;
+        position: absolute;
+        left: 0px;
+        margin-top: 1px;
+        margin-left: 10px;
+        font-size: 3em;
+        width: 10px;
+        border: 3px solid rgba(37, 35, 35, 0);
+        height: 10px;
+      }
+
+      .tag {
+        margin-left: 40px;
+      }
+
+      .class_postflight_dropzone {
+        border: 2px dashed rgba(109, 195, 243, 0.8);
+      }
+
+      .class_postflight_dropzone_drag {
+        border: 2px solid rgba(109, 195, 243, 0.4);
+      }
+
+      .class_postflight_dz_background {
+        background-color: rgb(109, 195, 243);
+        padding: .5em;
+      }
+
+      .class_postflight_dz_background_drag {
+        background-color: rgba(109, 195, 243, 0.4);
+      }
+
+      .dropzone {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2em;
+        text-align: center;
+        margin: 1em
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dropzone" >
+        <div id="postflight_dropzone" class="class_postflight_dropzone" style="padding: 5px;">
+            <div id="dropzoneChild" class="class_postflight_dz_background">
+                    <i class="far fa-file-image fa-8x" style="justify-content: center"></i>
+                    <h1 class="font-bold">Drop Thumbnails Here</h1>
+            </div>
+        </div>
+        <div id="postflight_dropzone" class="class_postflight_dropzone" style="padding: 5px;">
+            <div id="dropzoneChild" class="class_postflight_dz_background">
+                  <i class="fas fa-file-csv fa-8x"></i>
+                  <h1 class="font-bold">Drop CSV Here</h1>
+            </div>
+        </div>        
+    </div>
     <div class="input-section">
-        <input id="browse" type="file" onchange="previewFiles()" multiple>
-        <div id="preview"></div>
-        <div style="height:2in; text-align: center;">
-            <p>
-                <input type='file' accept='csv' onchange='openFile(event)'>
-            </p>
-        </div>
-        <div id="output"></div>
-        <div id="launch_dropzone" onclick="test()" webkitdirectory>
-            <h1>Click me After </h1>
-        </div>
+      <input id="browse" type="file" onchange="previewFiles()" multiple />
+      <div id="preview"></div>
+      <div style="height:2in; text-align: center;">
+        <p><input type="file" accept="csv" onchange="openFile(event)" /></p>
+      </div>
+      <div id="output"></div>
+      <div id="launch_dropzone" onclick="test()" webkitdirectory>
+        <h1>Click me After</h1>
+      </div>
     </div>
-    <div id="wrapper">
-    </div>
-</body>
-<script>
+    <div id="wrapper"></div>
+  </body>
+  <script>
+    (function () {
+      var dropzone = document.getElementById('postflight_dropzone');
+      var dropzoneChild = document.getElementById("dropzoneChild");
+
+      dropzone.ondragover = function () {
+        this.className = "class_postflight_dropzone_drag";
+        dropzoneChild.className = "class_postflight_dz_background_drag p-xl";
+        return false;
+      };
+
+      dropzone.ondragleave = function () {
+        this.className = "class_postflight_dropzone";
+        dropzoneChild.className = "class_postflight_dz_background p-xl";
+        return false;
+      };
+
+      dropzone.ondrop = function (e) {
+        e.preventDefault();
+        this.className = "class_postflight_dropzone";
+        dropzoneChild.className = "class_postflight_dz_background p-xl";
+        handleDropFiles(e);
+      }
+    }());
+
+  </script>
+  <script>  // Read/parse CSV
     let storedFiles = [];
     let csvObj = {};
-    let easy_access_obj = {}
-    let testt = []
+    let easy_access_obj = {};
+    let testt = [];
     var openFile = function(event) {
-        var input = event.target;
+      var input = event.target;
 
-        var reader = new FileReader();
-        reader.onload = function() {
-            var dataURL = reader.result;
-            // console.log(dataURL)
-            // Clean the ish
-            let step_one = csvToArray(eval('`' + dataURL + '`'));
-            // console.log(step_one);
-            if (step_one[step_one.length - 1].length == 1) {
-                step_one.pop();
-            }
-            // console.log(step_one);
-            // console.log(step_one.length)
-            // console.log(step_one[0].length)
-            let newInfo = csv_to_json(step_one, step_one.length, step_one[0].length);
-
-            var output = document.getElementById('output');
-            csvObj = newInfo;
-
-        };
-        reader.readAsBinaryString(input.files[0]);
-    };
-</script>
-<script>
-    function previewFiles() {
-
-        var preview = document.querySelector('#preview');
-        var files = document.querySelector('input[type=file]').files;
-
-        for (let q = 0; q < files.length; q++) {
-            (function(file) {
-                let name = file.name;
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    // get file content
-                    let src = e.target.result;
-                    easy_access_obj[name] = src;
-                }
-                reader.readAsDataURL(file);
-            })(files[q]);
-        };
-    }
-</script>
-<script>
-    function transform_show_obj(filesArr) {
-        let obj = {};
-
-        for (let i = 0; i < filesArr.length; i++) {
-            let file = filesArr[i];
-            obj[file.name] = file;
+      var reader = new FileReader();
+      reader.onload = function() {
+        var dataURL = reader.result;
+        // console.log(dataURL)
+        // Clean the ish
+        let step_one = csvToArray(eval("`" + dataURL + "`"));
+        // console.log(step_one);
+        if (step_one[step_one.length - 1].length == 1) {
+          step_one.pop();
         }
-        return obj
+        // console.log(step_one);
+        // console.log(step_one.length)
+        // console.log(step_one[0].length)
+        let newInfo = csv_to_json(
+          step_one,
+          step_one.length,
+          step_one[0].length
+        );
+
+        var output = document.getElementById("output");
+        csvObj = newInfo;
+      };
+      reader.readAsBinaryString(input.files[0]);
+    };
+  </script>
+  <script>  // Read in thumbnails
+    function previewFiles() {
+      var preview = document.querySelector("#preview");
+      var files = document.querySelector("input[type=file]").files;
+
+      for (let q = 0; q < files.length; q++) {
+        (function(file) {
+          let name = file.name;
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            // get file content
+            let src = e.target.result;
+            easy_access_obj[name] = src;
+          };
+          reader.readAsDataURL(file);
+        })(files[q]);
+      }
+    }
+  </script>
+  <script>
+    function transform_show_obj(filesArr) {
+      let obj = {};
+
+      for (let i = 0; i < filesArr.length; i++) {
+        let file = filesArr[i];
+        obj[file.name] = file;
+      }
+      return obj;
     }
 
     function new_image(filename, srcObj, height, width) {
-        let src = srcObj[filename]
-        let needer = new FileReader();
+      let src = srcObj[filename];
+      let needer = new FileReader();
 
-        needer.readAsDataURL(src)
+      needer.readAsDataURL(src);
 
-        let image = new Image();
-        // image.height = height;
-        // image.width = width;
-        image.title = filename;
-        image.src = needer.result;
-        return image;
-
+      let image = new Image();
+      // image.height = height;
+      // image.width = width;
+      image.title = filename;
+      image.src = needer.result;
+      return image;
     }
-</script>
-<script>
-    'use strict';
+  </script>
+  <script>
+    "use strict";
 
     function csvToArray(text) {
-        let p = '',
-            row = [''],
-            ret = [row],
-            i = 0,
-            r = 0,
-            s = !0,
-            l;
-        for (l in text) {
-            l = text[l];
-            if ('"' === l) {
-                if (s && l === p) row[i] += l;
-                s = !s;
-            } else if (',' === l && s) l = row[++i] = '';
-            else if ('\n' === l && s) {
-                if ('\r' === p) row[i] = row[i].slice(0, -1);
-                row = ret[++r] = [l = ''];
-                i = 0;
-            } else row[i] += l;
-            p = l;
-        }
-        return ret;
-    };
-
+      let p = "",
+        row = [""],
+        ret = [row],
+        i = 0,
+        r = 0,
+        s = !0,
+        l;
+      for (l in text) {
+        l = text[l];
+        if ('"' === l) {
+          if (s && l === p) row[i] += l;
+          s = !s;
+        } else if ("," === l && s) l = row[++i] = "";
+        else if ("\n" === l && s) {
+          if ("\r" === p) row[i] = row[i].slice(0, -1);
+          row = ret[++r] = [(l = "")];
+          i = 0;
+        } else row[i] += l;
+        p = l;
+      }
+      return ret;
+    }
 
     function csv_to_json(arr, num_rows, num_cols) {
-        let dS = {};
+      let dS = {};
 
-        for (let i = 2; i < num_rows; i++) {
-            dS[i - 2] = {};
-            dS[i - 2]['store'] = arr[i][0].trim();
-            dS[i - 2]['location'] = arr[i][1].trim();
-            dS[i - 2]['address'] = arr[i][2].trim();
-            dS[i - 2]['city'] = arr[i][3].trim();
-            dS[i - 2]['state'] = arr[i][4].trim();
-            dS[i - 2]['zip'] = arr[i][5].trim();
-            dS[i - 2]['phone'] = arr[i][6].trim();
-            dS[i - 2]['job_no'] = arr[0][0].trim();
+      for (let i = 2; i < num_rows; i++) {
+        dS[i - 2] = {};
+        dS[i - 2]["store"] = arr[i][0].trim();
+        dS[i - 2]["location"] = arr[i][1].trim();
+        dS[i - 2]["address"] = arr[i][2].trim();
+        dS[i - 2]["city"] = arr[i][3].trim();
+        dS[i - 2]["state"] = arr[i][4].trim();
+        dS[i - 2]["zip"] = arr[i][5].trim();
+        dS[i - 2]["phone"] = arr[i][6].trim();
+        dS[i - 2]["job_no"] = arr[0][0].trim();
 
-            dS[i - 2]['packout'] = [];
+        dS[i - 2]["packout"] = [];
 
-            for (let j = 7; j < num_cols; j++) {
-                let tempHold = {};
-                if (arr[i][j].trim() == 0 || arr[i][j].trim() == '') {
-                    // Placeholder
-                } else {
-                    tempHold['image'] = arr[0][j].trim();
-                    tempHold['description'] = arr[1][j].trim();
-                    tempHold['qty'] = arr[i][j].trim();
-                    dS[i - 2]['packout'].push(tempHold)
-                }
-            }
-            dS[i - 2]['graphic_count'] = dS[i - 2]['packout'].length;
+        for (let j = 7; j < num_cols; j++) {
+          let tempHold = {};
+          if (arr[i][j].trim() == 0 || arr[i][j].trim() == "") {
+            // Placeholder
+          } else {
+            tempHold["image"] = arr[0][j].trim();
+            tempHold["description"] = arr[1][j].trim();
+            tempHold["qty"] = arr[i][j].trim();
+            dS[i - 2]["packout"].push(tempHold);
+          }
         }
-        return dS
+        dS[i - 2]["graphic_count"] = dS[i - 2]["packout"].length;
+      }
+      return dS;
     }
-</script>
-<script>
-    window.addEventListener("dragover", function(e) {
+  </script>
+  <script>  // Event listeners
+    window.addEventListener(
+      "dragover",
+      function(e) {
         e = e || event;
         e.preventDefault();
-    }, false);
-    window.addEventListener("drop", function(e) {
+      },
+      false
+    );
+    window.addEventListener(
+      "drop",
+      function(e) {
         e = e || event;
         e.preventDefault();
-    }, false);
-</script>
-<script>
-    let launchDropzone = document.getElementById('launch_dropzone');
+      },
+      false
+    );
+  </script>
+  <script>
+    let launchDropzone = document.getElementById("launch_dropzone");
 
     launchDropzone.ondrop = function(e) {
-
-        launchDrop(e);
-    }
-
+      launchDrop(e);
+    };
 
     function launchDrop(e) {
-        let files = filesObjToArray(e);
-        files.forEach((f) => {
-            if (filenameInArray(storedFiles, f) === false) {
-                storedFiles.push(f);
-            }
-        });
+      let files = filesObjToArray(e);
+      files.forEach(f => {
+        if (filenameInArray(storedFiles, f) === false) {
+          storedFiles.push(f);
+        }
+      });
     }
 
     function filesObjToArray(e) {
-        let fileList = e.target.files || e.dataTransfer.files;
-        return Array.prototype.slice.call(fileList);
+      let fileList = e.target.files || e.dataTransfer.files;
+      return Array.prototype.slice.call(fileList);
     }
 
     function filenameInArray(fileArr, file) {
-        return fileArr.some(fileArr => fileArr.name === file.name);
+      return fileArr.some(fileArr => fileArr.name === file.name);
     }
 
     function writeFileTable(element, filename) {
-        // Create nodes?
-        // TODO: Modify this to just needing to pass element id name as string to this function & change name.
-        var newTR = document.createElement("tr");
-        var childToTR = document.createElement("td");
-        var fName = document.createTextNode(filename);
+      // Create nodes?
+      // TODO: Modify this to just needing to pass element id name as string to this function & change name.
+      var newTR = document.createElement("tr");
+      var childToTR = document.createElement("td");
+      var fName = document.createTextNode(filename);
 
-        // Appending
-        childToTR.appendChild(fName);
-        newTR.appendChild(childToTR);
+      // Appending
+      childToTR.appendChild(fName);
+      newTR.appendChild(childToTR);
 
-        element.appendChild(newTR);
+      element.appendChild(newTR);
     }
 
     function createMeatadata(returnedFiles) {
-        let tempObj = {};
-        let rf = JSON.parse(returnedFiles);
-        rf.map(function(ea) {
-            tempObj[ea['filename']] = ea['file_id'];
-        });
-        console.log(tempObj)
-        return JSON.stringify(tempObj);
+      let tempObj = {};
+      let rf = JSON.parse(returnedFiles);
+      rf.map(function(ea) {
+        tempObj[ea["filename"]] = ea["file_id"];
+      });
+      console.log(tempObj);
+      return JSON.stringify(tempObj);
     }
 
     function newStoredFilesArrwithName(arrObj) {
-        let reformattedArr = arrObj.map((obj) => {
-            return obj.name;
-        });
-        return reformattedArr
+      let reformattedArr = arrObj.map(obj => {
+        return obj.name;
+      });
+      return reformattedArr;
     }
 
     function elmByID(elementID) {
-        return document.getElementById(elementID);
+      return document.getElementById(elementID);
     }
 
     function relFilePath(files, i) {
-        var fSplit = files[i].path.split("/");
-        return fSplit[fSplit.length - 2] + '/' + files[i].name;
+      var fSplit = files[i].path.split("/");
+      return fSplit[fSplit.length - 2] + "/" + files[i].name;
     }
 
     function lastUpdate() {
-        var date = new Date();
-        date.setDate(date.getDate());
-        return date.toISOString();
+      var date = new Date();
+      date.setDate(date.getDate());
+      return date.toISOString();
     }
-</script>
-<script>
+  </script>
+  <script>
     function iter_arr(num_graphics, max_per_page) {
-        let temp_arr = [];
-        let num_pages = Math.ceil(num_graphics / max_per_page);
-        let graphics_left = num_graphics;
-        for (let i = 0; i < num_pages; i++) {
-            if (graphics_left >= max_per_page) {
-                temp_arr.push(max_per_page);
-            } else {
-                // console.log(graphics_left)
-                temp_arr.push(Math.abs(graphics_left));
-            }
-            graphics_left -= max_per_page;
+      let temp_arr = [];
+      let num_pages = Math.ceil(num_graphics / max_per_page);
+      let graphics_left = num_graphics;
+      for (let i = 0; i < num_pages; i++) {
+        if (graphics_left >= max_per_page) {
+          temp_arr.push(max_per_page);
+        } else {
+          // console.log(graphics_left)
+          temp_arr.push(Math.abs(graphics_left));
         }
-        return temp_arr
+        graphics_left -= max_per_page;
+      }
+      return temp_arr;
     }
-
 
     function transform_show_obj(filesArr) {
-        let obj = {};
+      let obj = {};
 
-        for (let i = 0; i < filesArr.length; i++) {
-            let file = filesArr[i];
-            obj[file.name] = file;
-        }
-        return obj
+      for (let i = 0; i < filesArr.length; i++) {
+        let file = filesArr[i];
+        obj[file.name] = file;
+      }
+      return obj;
     }
-</script>
-<script>
+  </script>
+  <script>
     Object.size = function(obj) {
-        var size = 0,
-            key;
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) size++;
-        }
-        return size;
+      var size = 0,
+        key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+      }
+      return size;
     };
 
     function place_graphics(obj_store, graphic_store) {
-        // console.log(obj_store, graphic_store)
-        let html = ''
-        for (let i = 0; i < Object.keys(obj_store).length; i++) {
-            // This is now inside each store instance
-            let num_graphics = obj_store[i].graphic_count;
-            let file_iter_array = iter_arr(num_graphics, 8);
-            curr_graphic = 0;
+      // console.log(obj_store, graphic_store)
+      let html = "";
+      for (let i = 0; i < Object.keys(obj_store).length; i++) {
+        // This is now inside each store instance
+        let num_graphics = obj_store[i].graphic_count;
+        let file_iter_array = iter_arr(num_graphics, 8);
+        curr_graphic = 0;
 
+        let currHTML = "";
+        // for (let j = 0; j < num_pages || curr_page < num_pages; j++) {
 
-            let currHTML = ''
-                // for (let j = 0; j < num_pages || curr_page < num_pages; j++) {
+        // }
+        let store = obj_store[i]["store"];
+        let location = obj_store[i]["location"];
+        let address = obj_store[i]["address"];
+        let city = obj_store[i]["city"];
+        let state = obj_store[i]["state"];
+        let zip = obj_store[i]["zip"];
+        let phone = obj_store[i]["phone"];
+        let job_no = obj_store[i]["job_no"];
+        // console.log(store, location, address, city) // GOOD to go
 
+        for (let j = 0; j < file_iter_array.length; j++) {
+          // Here is where we are placing files
+          let inner_loop_HTML = "";
+          // console.log(j)
+          for (let y = 0; y < file_iter_array[j]; y++) {
+            // console.log(csvObj[i]['packout'][curr_graphic]['image'], " | ", curr_graphic, " | ", i)
+            inner_loop_HTML += `
+                                 <product>
+                                    <p class="product__notes">${
+                                      csvObj[i]["packout"][curr_graphic][
+                                        "description"
+                                      ]
+                                    }</p>
+                                    <span class="product__image">
+                                      <img src="${
+                                        easy_access_obj[
+                                          csvObj[i]["packout"][curr_graphic][
+                                            "image"
+                                          ]
+                                        ]
+                                      }" alt=""/>
+                                    </span>
+                                    <span class="product__code">Qty: ${
+                                      csvObj[i]["packout"][curr_graphic]["qty"]
+                                    }</span> <span class="product__name"><!-- This is where size will go--></span>
+                                    <p class="product__notes"><!-- This is where product brief will go--></p>
+                                    <div class='check-container'>
+                                        <input type='checkbox' id='one' </input>
+                                        <label for='one'></label>
+                                        <!--<span class='tag'>Received</span>-->
+                                    </div>
+                                    <div class='check-container'>
+                                        <input type='checkbox' id='one' </input>
+                                        <label for='one'></label>
+                                        <!--<span class='tag'>Displayed</span>-->
+                                    </div>
+                                </product>
+                        `;
+            curr_graphic += 1;
+          }
 
-            // }
-            let store = obj_store[i]['store'];
-            let location = obj_store[i]['location'];
-            let address = obj_store[i]['address'];
-            let city = obj_store[i]['city'];
-            let state = obj_store[i]['state'];
-            let zip = obj_store[i]['zip'];
-            let phone = obj_store[i]['phone'];
-            let job_no = obj_store[i]['job_no'];
-            // console.log(store, location, address, city) // GOOD to go
-
-            for (let j = 0; j < file_iter_array.length; j++) {
-                // Here is where we are placing files
-                let inner_loop_HTML = '';
-                // console.log(j)
-                for (let y = 0; y < file_iter_array[j]; y++) {
-                    // console.log(csvObj[i]['packout'][curr_graphic]['image'], " | ", curr_graphic, " | ", i)
-                    inner_loop_HTML += `
-                         <product>
-                            <p class="product__notes">${csvObj[i]['packout'][curr_graphic]['description']}</p>
-                            <span class="product__image">
-                              <img src="${easy_access_obj[csvObj[i]['packout'][curr_graphic]['image']]}" alt=""/>
-                            </span>
-                            <span class="product__code">Qty: ${csvObj[i]['packout'][curr_graphic]["qty"]}</span> <span class="product__name"><!-- This is where size will go--></span>
-                            <p class="product__notes"><!-- This is where product brief will go--></p>
-                            <div class='check-container'>
-                                <input type='checkbox' id='one' </input>
-                                <label for='one'></label>
-                                <!--<span class='tag'>Received</span>-->
+          currHTML += `
+                            <div class="page-container">
+                                <header>
+                                </header>
+                                <page>
+                                    ${inner_loop_HTML}
+                                </page>
+                                <footer>
+                                    <div class="left" style="display:inline;">
+                                        <span class="ship__location"><b>Store: </b>${store}</span> &nbsp&nbsp&nbsp&nbsp <span class="ship__location"><b>Location: </b>${location}</span>
+                                        <span class="job__num"><b>Job</b>: ${job_no} <!--&nbsp&nbsp&nbsp<b>Pg</b>: (1 / 2) --></span>
+                                        <p class="product__notes">${address}</p>
+                                        <p class="product__notes">${city}, ${state} ${zip}</p>
+                                    </div>
+                                </footer>
                             </div>
-                            <div class='check-container'>
-                                <input type='checkbox' id='one' </input>
-                                <label for='one'></label>
-                                <!--<span class='tag'>Displayed</span>-->
-                            </div>
-                        </product>
-                `;
-                    curr_graphic += 1;
-                }
-
-                currHTML += `
-                    <div class="page-container">
-                        <header>
-                        </header>
-                        <page>
-                            ${inner_loop_HTML}
-                        </page>
-                        <footer>
-                            <div class="left" style="display:inline;">
-                                <span class="ship__location"><b>Store: </b>${store}</span> &nbsp&nbsp&nbsp&nbsp <span class="ship__location"><b>Location: </b>${location}</span>
-                                <span class="job__num"><b>Job</b>: ${job_no} <!--&nbsp&nbsp&nbsp<b>Pg</b>: (1 / 2) --></span>
-                                <p class="product__notes">${address}</p>
-                                <p class="product__notes">${city}, ${state} ${zip}</p>
-                            </div>
-                        </footer>
-                    </div>
-                `
-
-            }
-            html += currHTML
+                        `;
         }
-        // console.log(html);
-        return html;
+        html += currHTML;
+      }
+      // console.log(html);
+      return html;
     }
 
     function test() {
-        document.getElementById("wrapper").innerHTML = place_graphics(csvObj, easy_access_obj);
+      document.getElementById("wrapper").innerHTML = place_graphics(
+        csvObj,
+        easy_access_obj
+      );
     }
-</script>
-
+  </script>
 </html>
