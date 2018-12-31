@@ -14,6 +14,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.6.1/js/all.js" integrity="sha384-R5JkiUweZpJjELPWqttAYmYM1P3SNEJRM6ecTQF05pFFtxmCO+Y1CiUhvuDzgSVZ" crossorigin="anonymous"></script>
     <style type="text/css">
       @import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,700);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
       @media print {
         .input-section {
@@ -282,56 +283,44 @@
 
   <body>
     <div class="dropzone" >
-        <div id="postflight_dropzone" class="class_postflight_dropzone" style="padding: 5px;">
+        <div id="drop-area-images" class="class_postflight_dropzone" style="padding: 5px;">
             <div id="dropzoneChild" class="class_postflight_dz_background">
                     <i class="far fa-file-image fa-8x" style="justify-content: center"></i>
                     <h1 class="font-bold">Drop Thumbnails Here</h1>
+                    <input id="browse" type="file" onchange="previewFiles()" multiple />
+
             </div>
         </div>
-        <div id="postflight_dropzone" class="class_postflight_dropzone" style="padding: 5px;">
+        <div id="drop-area-csv" class="class_postflight_dropzone" style="padding: 5px;">
             <div id="dropzoneChild" class="class_postflight_dz_background">
                   <i class="fas fa-file-csv fa-8x"></i>
                   <h1 class="font-bold">Drop CSV Here</h1>
+                  <input type="file" accept="csv" onchange="openFile(event)" />
             </div>
         </div>        
     </div>
     <div class="input-section">
-      <input id="browse" type="file" onchange="previewFiles()" multiple />
-      <div id="preview"></div>
-      <div style="height:2in; text-align: center;">
+      <!-- <input id="browse" type="file" onchange="previewFiles()" multiple />
+      <div id="preview"></div> -->
+      <!-- <div style="height:2in; text-align: center;">
         <p><input type="file" accept="csv" onchange="openFile(event)" /></p>
-      </div>
-      <div id="output"></div>
+      </div> -->
+      <!-- <div id="output"></div> -->
       <div id="launch_dropzone" onclick="test()" webkitdirectory>
         <h1>Click me After</h1>
       </div>
     </div>
     <div id="wrapper"></div>
   </body>
-  <script>
-    (function () {
-      var dropzone = document.getElementById('postflight_dropzone');
-      var dropzoneChild = document.getElementById("dropzoneChild");
+  <script>  // Drag and drop code
+    let dropAreaImages = document.getElementById('drop-area-images')
+    let dropAreaCSV = document.getElementById('drop-area-csv')
 
-      dropzone.ondragover = function () {
-        this.className = "class_postflight_dropzone_drag";
-        dropzoneChild.className = "class_postflight_dz_background_drag p-xl";
-        return false;
-      };
+    dropAreaImages.addEventListener('dragenter', handlerFunction, false)
+    dropAreaImages.addEventListener('dragleave', handlerFunction, false)
+    dropAreaImages.addEventListener('dragover', handlerFunction, false)
+    dropAreaImages.addEventListener('drop', handlerFunction, false)
 
-      dropzone.ondragleave = function () {
-        this.className = "class_postflight_dropzone";
-        dropzoneChild.className = "class_postflight_dz_background p-xl";
-        return false;
-      };
-
-      dropzone.ondrop = function (e) {
-        e.preventDefault();
-        this.className = "class_postflight_dropzone";
-        dropzoneChild.className = "class_postflight_dz_background p-xl";
-        handleDropFiles(e);
-      }
-    }());
 
   </script>
   <script>  // Read/parse CSV
@@ -586,64 +575,64 @@
       return obj;
     }
   </script>
-  <script>
-    Object.size = function(obj) {
-      var size = 0,
-        key;
-      for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-      }
-      return size;
-    };
+  <script>  // Generate container/layout for each store
+      Object.size = function (obj) {
+        var size = 0,
+          key;
+        for (key in obj) {
+          if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
+      };
 
-    function place_graphics(obj_store, graphic_store) {
-      // console.log(obj_store, graphic_store)
-      let html = "";
-      for (let i = 0; i < Object.keys(obj_store).length; i++) {
-        // This is now inside each store instance
-        let num_graphics = obj_store[i].graphic_count;
-        let file_iter_array = iter_arr(num_graphics, 8);
-        curr_graphic = 0;
+      function place_graphics(obj_store, graphic_store) {
+        // console.log(obj_store, graphic_store)
+        let html = "";
+        for (let i = 0; i < Object.keys(obj_store).length; i++) {
+          // This is now inside each store instance
+          let num_graphics = obj_store[i].graphic_count;
+          let file_iter_array = iter_arr(num_graphics, 8);
+          curr_graphic = 0;
 
-        let currHTML = "";
-        // for (let j = 0; j < num_pages || curr_page < num_pages; j++) {
+          let currHTML = "";
+          // for (let j = 0; j < num_pages || curr_page < num_pages; j++) {
 
-        // }
-        let store = obj_store[i]["store"];
-        let location = obj_store[i]["location"];
-        let address = obj_store[i]["address"];
-        let city = obj_store[i]["city"];
-        let state = obj_store[i]["state"];
-        let zip = obj_store[i]["zip"];
-        let phone = obj_store[i]["phone"];
-        let job_no = obj_store[i]["job_no"];
-        // console.log(store, location, address, city) // GOOD to go
+          // }
+          let store = obj_store[i]["store"];
+          let location = obj_store[i]["location"];
+          let address = obj_store[i]["address"];
+          let city = obj_store[i]["city"];
+          let state = obj_store[i]["state"];
+          let zip = obj_store[i]["zip"];
+          let phone = obj_store[i]["phone"];
+          let job_no = obj_store[i]["job_no"];
+          // console.log(store, location, address, city) // GOOD to go
 
-        for (let j = 0; j < file_iter_array.length; j++) {
-          // Here is where we are placing files
-          let inner_loop_HTML = "";
-          // console.log(j)
-          for (let y = 0; y < file_iter_array[j]; y++) {
-            // console.log(csvObj[i]['packout'][curr_graphic]['image'], " | ", curr_graphic, " | ", i)
-            inner_loop_HTML += `
+          for (let j = 0; j < file_iter_array.length; j++) {
+            // Here is where we are placing files
+            let inner_loop_HTML = "";
+            // console.log(j)
+            for (let y = 0; y < file_iter_array[j]; y++) {
+              // console.log(csvObj[i]['packout'][curr_graphic]['image'], " | ", curr_graphic, " | ", i)
+              inner_loop_HTML += `
                                  <product>
                                     <p class="product__notes">${
-                                      csvObj[i]["packout"][curr_graphic][
-                                        "description"
-                                      ]
-                                    }</p>
+                csvObj[i]["packout"][curr_graphic][
+                "description"
+                ]
+                }</p>
                                     <span class="product__image">
                                       <img src="${
-                                        easy_access_obj[
-                                          csvObj[i]["packout"][curr_graphic][
-                                            "image"
-                                          ]
-                                        ]
-                                      }" alt=""/>
+                easy_access_obj[
+                csvObj[i]["packout"][curr_graphic][
+                "image"
+                ]
+                ]
+                }" alt=""/>
                                     </span>
                                     <span class="product__code">Qty: ${
-                                      csvObj[i]["packout"][curr_graphic]["qty"]
-                                    }</span> <span class="product__name"><!-- This is where size will go--></span>
+                csvObj[i]["packout"][curr_graphic]["qty"]
+                }</span> <span class="product__name"><!-- This is where size will go--></span>
                                     <p class="product__notes"><!-- This is where product brief will go--></p>
                                     <div class='check-container'>
                                         <input type='checkbox' id='one' </input>
@@ -657,10 +646,10 @@
                                     </div>
                                 </product>
                         `;
-            curr_graphic += 1;
-          }
+              curr_graphic += 1;
+            }
 
-          currHTML += `
+            currHTML += `
                             <div class="page-container">
                                 <header>
                                 </header>
@@ -677,18 +666,15 @@
                                 </footer>
                             </div>
                         `;
+          }
+          html += currHTML;
         }
-        html += currHTML;
+        // console.log(html);
+        return html;
       }
-      // console.log(html);
-      return html;
-    }
 
-    function test() {
-      document.getElementById("wrapper").innerHTML = place_graphics(
-        csvObj,
-        easy_access_obj
-      );
-    }
+      function test() {
+        document.getElementById("wrapper").innerHTML = place_graphics(csvObj, easy_access_obj);
+      }
   </script>
 </html>
